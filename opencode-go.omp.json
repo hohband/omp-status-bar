@@ -1,0 +1,60 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 3,
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "powerline",
+          "foreground": "#0f111a",
+          "background": "#7aa2f7",
+          "template": " {{ if .WSL }}WSL{{ else }}{{ .Icon }}{{ end }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "foreground": "#e4e4e4",
+          "background": "#44475a",
+          "template": " {{ .Path }} "
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "foreground": "#011627",
+          "background": "#a3be8c",
+          "template": " {{ .HEAD }} "
+        },
+        {
+          "type": "status",
+          "style": "powerline",
+          "foreground": "#0f111a",
+          "background": "#f38ba8",
+          "template": " {{ if gt .Code 0 }}✗ {{ .Code }}{{ else }}✓{{ end }} "
+        }
+      ]
+    },
+    {
+      "type": "rprompt",
+      "segments": [
+        {
+          "type": "text",
+          "style": "powerline",
+          "foreground": "#0f111a",
+          "background": "#5eead4",
+          "template": " {{ cmd \"opencode-go-usage\" }} "
+        },
+        {
+          "type": "time",
+          "style": "powerline",
+          "foreground": "#0f111a",
+          "background": "#cba6f7",
+          "template": " {{ .CurrentDate | date \"15:04\" }} "
+        }
+      ]
+    }
+  ]
+}
