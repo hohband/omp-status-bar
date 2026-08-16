@@ -4,7 +4,7 @@
 Prints the OpenCode Go subscription usage as a single line for the OMP
 prompt, e.g.:
 
-    Go 5h 57% · 7d 36% · 30d 18%
+    OpenCode Go 5h 57% · 7d 36% · 30d 18% used
 
 The data comes from the official endpoint used by the OpenCode Go console:
 
@@ -170,11 +170,10 @@ def format_text(usage: dict, short: bool = False) -> str:
             percent = int(round(float(percent)))
         except (TypeError, ValueError):
             percent = "?"
-        parts.append(f"{label}{percent}%" if not short else f"{percent}%")
+        parts.append(f"{label} {percent}%")
 
-    if short:
-        return "Go " + "/".join(parts)
-    return "Go " + " · ".join(parts)
+    separator = " / " if short else " · "
+    return "OpenCode Go " + separator.join(parts) + " used"
 
 
 def lock_path() -> Path:
@@ -243,7 +242,7 @@ def main(argv: list[str] | None = None) -> int:
         description="Print OpenCode Go usage for an Oh My Posh segment"
     )
     parser.add_argument(
-        "--short", action="store_true", help="compact 57%%/36%%/18%% output"
+        "--short", action="store_true", help="compact '5h 12%% / ...' output"
     )
     parser.add_argument(
         "--json", action="store_true", help="print the raw usage JSON"
@@ -281,7 +280,7 @@ def main(argv: list[str] | None = None) -> int:
         usage = cache["usage"] if cache else None
 
     if usage is None:
-        print("Go ?")
+        print("OpenCode Go ?")
         return 0
 
     if args.json:

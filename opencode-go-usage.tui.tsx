@@ -39,7 +39,7 @@ export default {
   tui: async (api: any, _options: any) => {
     const command = parseCommand()
     const interval = parseInterval()
-    const [usage, setUsage] = createSignal("Go ?")
+    const [usage, setUsage] = createSignal("OpenCode Go ?")
     let timer: any
 
     const refresh = async () => {

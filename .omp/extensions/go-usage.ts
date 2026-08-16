@@ -31,7 +31,7 @@ async function fetchUsage(): Promise<string | null> {
 
 export default function opencodeGoUsage(pi: ExtensionAPI): void {
   pi.setLabel("OpenCode Go usage")
-  let current = "Go ?"
+  let current = "OpenCode Go ?"
 
   async function refresh(ctx: ExtensionContext): Promise<void> {
     try {
